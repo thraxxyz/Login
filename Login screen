@@ -1,0 +1,254 @@
+-- MAKE SURE YOU READ THE INSTRUCTIONS OR IT WILL MOST LIKELY NOT WORK
+
+local LoginScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TitleBar = Instance.new("Frame")
+local TitleLabel = Instance.new("TextLabel")
+local VersionLabel = Instance.new("TextLabel")
+local ContentFrame = Instance.new("Frame")
+local WelcomeTextLabel = Instance.new("TextLabel")
+local UsernameTextBox = Instance.new("TextBox")
+local PasswordTextBox = Instance.new("TextBox")
+local LoginButton = Instance.new("TextButton")
+
+-- Set up the main ScreenGui
+LoginScreenGui.Name = "LoginScreenGui"
+LoginScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+LoginScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LoginScreenGui.ResetOnSpawn = false
+
+-- Main window frame with more rounded corners
+MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = LoginScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35) -- Dark grey (macOS-like)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center position for animation
+MainFrame.AnchorPoint = Vector2.new(0.5, 0.5) -- Center anchor point
+MainFrame.Size = UDim2.new(0, 0, 0, 0) -- Start with zero size for animation
+MainFrame.ClipsDescendants = true
+
+-- Round the corners of the main frame (more rounded now)
+local MainFrameCorner = Instance.new("UICorner")
+MainFrameCorner.CornerRadius = UDim.new(0, 20) -- Increased from 10 to 20
+MainFrameCorner.Parent = MainFrame
+
+-- Title bar (like macOS window header)
+TitleBar = Instance.new("Frame")
+TitleBar.Name = "TitleBar"
+TitleBar.Parent = MainFrame
+TitleBar.BackgroundColor3 = Color3.fromRGB(45, 45, 45) -- Slightly lighter than main
+TitleBar.BorderSizePixel = 0
+TitleBar.Size = UDim2.new(1, 0, 0, 30)
+
+-- Title label
+TitleLabel = Instance.new("TextLabel")
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Parent = TitleBar
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Position = UDim2.new(0, 20, 0, 0) -- Moved left since we removed the buttons
+TitleLabel.Size = UDim2.new(0, 78, 1, 0)
+TitleLabel.Font = Enum.Font.SourceSansSemibold
+TitleLabel.Text = "Beeware"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.TextSize = 14
+
+-- Version label
+VersionLabel = Instance.new("TextLabel")
+VersionLabel.Name = "VersionLabel"
+VersionLabel.Parent = TitleBar
+VersionLabel.BackgroundTransparency = 1
+VersionLabel.Position = UDim2.new(1, -30, 0, 0)
+VersionLabel.Size = UDim2.new(0, 25, 1, 0)
+VersionLabel.Font = Enum.Font.SourceSans
+VersionLabel.Text = "V1"
+VersionLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+VersionLabel.TextSize = 12
+
+-- Content frame (holds all login elements)
+ContentFrame = Instance.new("Frame")
+ContentFrame.Name = "ContentFrame"
+ContentFrame.Parent = MainFrame
+ContentFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35) -- Match main frame
+ContentFrame.BorderSizePixel = 0
+ContentFrame.Position = UDim2.new(0, 0, 0, 30)
+ContentFrame.Size = UDim2.new(1, 0, 1, -30)
+
+-- Welcome text
+WelcomeTextLabel = Instance.new("TextLabel")
+WelcomeTextLabel.Name = "WelcomeTextLabel"
+WelcomeTextLabel.Parent = ContentFrame
+WelcomeTextLabel.BackgroundTransparency = 1
+WelcomeTextLabel.Position = UDim2.new(0.5, 0, 0.15, 0)
+WelcomeTextLabel.Size = UDim2.new(0, 300, 0, 40)
+WelcomeTextLabel.Font = Enum.Font.SourceSansBold
+WelcomeTextLabel.Text = "Welcome"
+WelcomeTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+WelcomeTextLabel.TextSize = 30
+WelcomeTextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+
+-- Username input with more rounded corners
+UsernameTextBox = Instance.new("TextBox")
+UsernameTextBox.Name = "UsernameTextBox"
+UsernameTextBox.Parent = ContentFrame
+UsernameTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+UsernameTextBox.Position = UDim2.new(0.5, 0, 0.35, 0)
+UsernameTextBox.Size = UDim2.new(0, 340, 0, 45)
+UsernameTextBox.Font = Enum.Font.SourceSans
+UsernameTextBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+UsernameTextBox.PlaceholderText = "Username.."
+UsernameTextBox.Text = ""
+UsernameTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+UsernameTextBox.TextSize = 16
+UsernameTextBox.AnchorPoint = Vector2.new(0.5, 0.5)
+
+local UsernameBoxCorner = Instance.new("UICorner")
+UsernameBoxCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
+UsernameBoxCorner.Parent = UsernameTextBox
+
+-- Password input with more rounded corners
+PasswordTextBox = Instance.new("TextBox")
+PasswordTextBox.Name = "PasswordTextBox"
+PasswordTextBox.Parent = ContentFrame
+PasswordTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+PasswordTextBox.Position = UDim2.new(0.5, 0, 0.5, 0)
+PasswordTextBox.Size = UDim2.new(0, 300, 0, 45)
+PasswordTextBox.Font = Enum.Font.SourceSans
+PasswordTextBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
+PasswordTextBox.PlaceholderText = "Password.."
+PasswordTextBox.Text = ""
+PasswordTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+PasswordTextBox.TextSize = 16
+PasswordTextBox.AnchorPoint = Vector2.new(0.5, 0.5)
+
+local PasswordBoxCorner = Instance.new("UICorner")
+PasswordBoxCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
+PasswordBoxCorner.Parent = PasswordTextBox
+
+-- Login button with more rounded corners
+LoginButton = Instance.new("TextButton")
+LoginButton.Name = "LoginButton"
+LoginButton.Parent = ContentFrame
+LoginButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+LoginButton.Position = UDim2.new(0.5, 0, 0.7, 0)
+LoginButton.Size = UDim2.new(0, 200, 0, 50)
+LoginButton.Font = Enum.Font.SourceSansSemibold
+LoginButton.Text = "Login"
+LoginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoginButton.TextSize = 20
+LoginButton.AnchorPoint = Vector2.new(0.5, 0.5)
+
+local LoginButtonCorner = Instance.new("UICorner")
+LoginButtonCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
+LoginButtonCorner.Parent = LoginButton
+
+-- Create button hover effect
+LoginButton.MouseEnter:Connect(function()
+    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(80, 80, 80)}):Play()
+end)
+
+LoginButton.MouseLeave:Connect(function()
+    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
+end)
+
+-- Add close functionality (since we removed the close button)
+-- We'll use a key press instead (Escape key)
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.Escape then
+        -- Zoom out animation
+        local ZoomOutTween = game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
+            {Size = UDim2.new(0, 0, 0, 0)})
+        
+        ZoomOutTween.Completed:Connect(function()
+            LoginScreenGui:Destroy()
+        end)
+        
+        ZoomOutTween:Play()
+    end
+end)
+
+-- Add animation for opening the window
+local function animateOpen()
+    -- Set final dimensions
+    local finalWidth = 650
+    local finalHeight = 400
+    
+    -- Zoom in animation
+    game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
+        {Size = UDim2.new(0, finalWidth, 0, finalHeight)}):Play()
+end
+
+-- Start animation on load
+animateOpen()
+
+-- Validation code (unchanged from original)
+local HttpService = game:GetService("HttpService")
+local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
+-- REPLACE GITHUB LINK BELOW WITH THE ONE U MADE FROM INSTRUCTIONS
+local LOGIN_URL = "https://raw.githubusercontent.com/thraxxyz/Login/refs/heads/main/Logs"
+
+local clientId = RbxAnalyticsService:GetClientId()
+
+local function validateLogin(username, password, clientId)
+    local success, response = pcall(function()
+        return game:HttpGet(LOGIN_URL)
+    end)
+
+    if not success then
+        return false, "Error."
+    end
+
+    local accounts = response:split("\n")
+    for _, account in ipairs(accounts) do
+        local accountData = account:split(":")
+        if #accountData == 3 then
+            local storedUsername, storedPassword, storedClientId = accountData[1], accountData[2], accountData[3]
+            if storedUsername == username and storedPassword == password and storedClientId == clientId then
+                return true
+            end
+        end
+    end
+    return false, "Invalid"
+end
+
+LoginButton.MouseButton1Click:Connect(function()
+    local username = UsernameTextBox.Text
+    local password = PasswordTextBox.Text
+
+    if username == "" or password == "" then
+        return
+    end
+
+    local isValid, message = validateLogin(username, password, clientId)
+    if isValid then
+        ---------------------------- PUT YOUR SCRIPT HERE BELOW IT WILL LOAD IF SUCCEEDED
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/thraxxyz/Login/refs/heads/main/Beesploit"))() 
+        print("Yes")
+        WelcomeTextLabel.Text = "Welcome " .. username
+        
+        -- Create zoom out animation before hiding
+        local ZoomOutTween = game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
+            {Size = UDim2.new(0, 0, 0, 0)})
+        
+        ZoomOutTween.Completed:Connect(function()
+            MainFrame.Visible = false
+        end)
+        
+        ZoomOutTween:Play()
+    else
+    -----------------------------------NOT WHITELISTED CODE BELOW
+    -- Simple Roblox kick script
+        local player = game.Players.LocalPlayer
+
+        -- Function to kick the local player with custom message
+        local function kickPlayer()
+            player:Kick("Buy Beeware first nga")
+        end
+
+        -- Execute the kick
+        kickPlayer()
+        print("no")
+        UsernameTextBox.Text = ""
+        PasswordTextBox.Text = ""
+    end
+end)
