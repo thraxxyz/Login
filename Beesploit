@@ -1,3 +1,65 @@
+local ImageIdfr = "http://www.roblox.com/asset/?id=18137576651"
+
+local function Tween(Object, Size1, Size2, Size3, Size4, Speed)
+    Object:TweenSize(
+        UDim2.new(Size1, Size2, Size3, Size4),
+        Enum.EasingDirection.InOut,
+        Enum.EasingStyle.Sine,
+        Speed,
+        true
+    )
+end
+
+
+local Intro = {
+    Intro = Instance.new("ScreenGui"),
+    Anchored_Frame = Instance.new("Frame"),
+    ImageLabel = Instance.new("ImageLabel")
+}
+
+Intro.Intro.Name = "Intro"
+Intro.Intro.Parent = game.CoreGui
+Intro.Intro.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Intro.Anchored_Frame.Name = "Anchored_Frame"
+Intro.Anchored_Frame.Parent = Intro.Intro
+Intro.Anchored_Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+Intro.Anchored_Frame.BackgroundTransparency = 1
+Intro.Anchored_Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+Intro.Anchored_Frame.Size = UDim2.new(0, 100, 0, 100)
+
+Intro.ImageLabel.Parent = Intro.Anchored_Frame
+Intro.ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+Intro.ImageLabel.BackgroundTransparency = 1
+Intro.ImageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+Intro.ImageLabel.Size = UDim2.new(0, 0, 0, 0)
+Intro.ImageLabel.Image = ImageIdfr
+Intro.ImageLabel.ScaleType = Enum.ScaleType.Crop
+
+local BlurEffect = Instance.new("BlurEffect", game.Lighting)
+BlurEffect.Size = 0
+
+for i = 0, 24 do
+    task.wait()
+    BlurEffect.Size = i
+end
+
+local ImageLabel = Intro.ImageLabel
+
+
+Tween(ImageLabel, 0, 350, 0, 395, 0.8)
+task.wait(1)
+Tween(ImageLabel, 0, 0, 0, 0, 0.8)
+
+
+for i = 24, 0, -1 do
+    task.wait()
+    BlurEffect.Size = i
+end
+
+task.wait(1)
+Intro.Intro:Destroy()
+BlurEffect:Destroy()
 
 local Gamesense = Instance.new("ScreenGui")
 local Panel = Instance.new("Frame")
