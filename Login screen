@@ -33,26 +33,54 @@ MainFrame.AnchorPoint = Vector2.new(0.5, 0.5) -- Center anchor point
 MainFrame.Size = UDim2.new(0, 0, 0, 0) -- Start with zero size for animation
 MainFrame.ClipsDescendants = true
 
+-- Increase corner radius for more rounded appearance
 local MainFrameCorner = Instance.new("UICorner")
-MainFrameCorner.CornerRadius = UDim.new(0, 16) -- Rounded corners
+MainFrameCorner.CornerRadius = UDim.new(0, 24) -- Rounded corners
 MainFrameCorner.Parent = MainFrame
 
--- Add a yellow border/glow effect
+-- First create a design solution - use a small inset frame with no corners for content
+local InnerFrame = Instance.new("Frame")
+InnerFrame.Name = "InnerFrame"
+InnerFrame.Parent = MainFrame
+InnerFrame.BackgroundColor3 = BLACK_PRIMARY
+InnerFrame.BorderSizePixel = 0
+InnerFrame.Position = UDim2.new(0, 2, 0, 2) -- Inset by 2 pixels
+InnerFrame.Size = UDim2.new(1, -4, 1, -4) -- Smaller by 4 pixels (2px on each side)
+InnerFrame.ClipsDescendants = true
+
+-- Add corner radius to the inner frame as well
+local InnerFrameCorner = Instance.new("UICorner")
+InnerFrameCorner.CornerRadius = UDim.new(0, 20) -- Slightly smaller than main frame
+InnerFrameCorner.Parent = InnerFrame
+
+-- Add a yellow border/glow effect - add it to outer frame
 local MainFrameStroke = Instance.new("UIStroke")
 MainFrameStroke.Color = YELLOW_PRIMARY
 MainFrameStroke.Thickness = 2
+MainFrameStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 MainFrameStroke.Parent = MainFrame
 
 TitleBar = Instance.new("Frame")
 TitleBar.Name = "TitleBar"
-TitleBar.Parent = MainFrame
+TitleBar.Parent = InnerFrame -- Parent to inner frame
 TitleBar.BackgroundColor3 = BLACK_SECONDARY -- Slightly lighter black
 TitleBar.BorderSizePixel = 0
 TitleBar.Size = UDim2.new(1, 0, 0, 30)
+TitleBar.Position = UDim2.new(0, 0, 0, 0)
 
+-- Add UI corner to title bar with just the top corners rounded
 local TitleBarCorner = Instance.new("UICorner")
-TitleBarCorner.CornerRadius = UDim.new(0, 16)
+TitleBarCorner.CornerRadius = UDim.new(0, 20) -- Match inner frame corner radius
 TitleBarCorner.Parent = TitleBar
+
+-- Create a separator line instead of relying on the frame overlap
+local Separator = Instance.new("Frame")
+Separator.Name = "Separator"
+Separator.Parent = InnerFrame
+Separator.BackgroundColor3 = BLACK_SECONDARY
+Separator.BorderSizePixel = 0
+Separator.Position = UDim2.new(0, 0, 0, 30)
+Separator.Size = UDim2.new(1, 0, 0, 1)
 
 TitleLabel = Instance.new("TextLabel")
 TitleLabel.Name = "TitleLabel"
@@ -64,6 +92,7 @@ TitleLabel.Font = Enum.Font.SourceSansBold
 TitleLabel.Text = "Beeware"
 TitleLabel.TextColor3 = YELLOW_PRIMARY -- Yellow text
 TitleLabel.TextSize = 16
+TitleLabel.ZIndex = 3 -- Ensure text is on top
 
 VersionLabel = Instance.new("TextLabel")
 VersionLabel.Name = "VersionLabel"
@@ -75,14 +104,20 @@ VersionLabel.Font = Enum.Font.SourceSans
 VersionLabel.Text = "V1"
 VersionLabel.TextColor3 = YELLOW_ACCENT -- Light yellow
 VersionLabel.TextSize = 12
+VersionLabel.ZIndex = 3 -- Ensure text is on top
 
 ContentFrame = Instance.new("Frame")
 ContentFrame.Name = "ContentFrame"
-ContentFrame.Parent = MainFrame
+ContentFrame.Parent = InnerFrame -- Change parent to InnerFrame
 ContentFrame.BackgroundColor3 = BLACK_PRIMARY -- Match main frame
 ContentFrame.BorderSizePixel = 0
-ContentFrame.Position = UDim2.new(0, 0, 0, 30)
-ContentFrame.Size = UDim2.new(1, 0, 1, -30)
+ContentFrame.Position = UDim2.new(0, 0, 0, 31) -- Start just below separator
+ContentFrame.Size = UDim2.new(1, 0, 1, -31) -- Adjusted for separator
+
+-- Add UICorner to content frame for bottom rounded corners
+local ContentFrameCorner = Instance.new("UICorner")
+ContentFrameCorner.CornerRadius = UDim.new(0, 20) -- Match inner frame
+ContentFrameCorner.Parent = ContentFrame
 
 -- Add bee profile icon
 ProfileIcon = Instance.new("ImageLabel")
@@ -91,7 +126,7 @@ ProfileIcon.Parent = ContentFrame
 ProfileIcon.BackgroundTransparency = 1
 ProfileIcon.Position = UDim2.new(0.5, 0, 0.15, 0)
 ProfileIcon.Size = UDim2.new(0, 70, 0, 70)
-ProfileIcon.Image = "rbxassetid://6034973115" -- Generic user icon (replace with bee icon ID)
+ProfileIcon.Image = "rbxassetid://121753969359085" -- Generic user icon (replace with bee icon ID)
 ProfileIcon.ImageColor3 = YELLOW_PRIMARY -- Tint it yellow
 ProfileIcon.AnchorPoint = Vector2.new(0.5, 0.5)
 
@@ -126,8 +161,9 @@ UsernameTextBox.TextColor3 = TEXT_WHITE
 UsernameTextBox.TextSize = 16
 UsernameTextBox.AnchorPoint = Vector2.new(0.5, 0.5)
 
+-- Increase corner radius for more rounded appearance
 local UsernameBoxCorner = Instance.new("UICorner")
-UsernameBoxCorner.CornerRadius = UDim.new(0, 12)
+UsernameBoxCorner.CornerRadius = UDim.new(0, 18) -- Increased from 12 to 18
 UsernameBoxCorner.Parent = UsernameTextBox
 
 -- Add a yellow glow when focused
@@ -150,8 +186,9 @@ PasswordTextBox.TextColor3 = TEXT_WHITE
 PasswordTextBox.TextSize = 16
 PasswordTextBox.AnchorPoint = Vector2.new(0.5, 0.5)
 
+-- Increase corner radius for more rounded appearance
 local PasswordBoxCorner = Instance.new("UICorner")
-PasswordBoxCorner.CornerRadius = UDim.new(0, 12)
+PasswordBoxCorner.CornerRadius = UDim.new(0, 18) -- Increased from 12 to 18
 PasswordBoxCorner.Parent = PasswordTextBox
 
 -- Add a yellow glow when focused
@@ -172,8 +209,9 @@ LoginButton.TextColor3 = BLACK_PRIMARY -- Black text on yellow button
 LoginButton.TextSize = 18
 LoginButton.AnchorPoint = Vector2.new(0.5, 0.5)
 
+-- Increase corner radius for more rounded appearance
 local LoginButtonCorner = Instance.new("UICorner")
-LoginButtonCorner.CornerRadius = UDim.new(0, 12)
+LoginButtonCorner.CornerRadius = UDim.new(0, 20) -- Increased from 12 to 20
 LoginButtonCorner.Parent = LoginButton
 
 -- Enhanced text box focus effects
@@ -221,9 +259,14 @@ end)
 -- Add close functionality (Escape key)
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.Escape then
-        -- Zoom out animation
+        -- Zoom out animation - make sure to animate both frames
         local ZoomOutTween = game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
             {Size = UDim2.new(0, 0, 0, 0)})
+        
+        local InnerFrameOutTween = game:GetService("TweenService"):Create(InnerFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
+            {Size = UDim2.new(0, 0, 0, 0)})
+        
+        InnerFrameOutTween:Play()
         
         ZoomOutTween.Completed:Connect(function()
             LoginScreenGui:Destroy()
@@ -240,6 +283,10 @@ local function animateOpen()
     
     game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
         {Size = UDim2.new(0, finalWidth, 0, finalHeight)}):Play()
+    
+    -- Also resize inner frame with a slight delay
+    wait(0.05)
+    InnerFrame.Size = UDim2.new(1, -4, 1, -4)
 end
 
 animateOpen()
@@ -301,8 +348,14 @@ LoginButton.MouseButton1Click:Connect(function()
         print("Yes")
         WelcomeTextLabel.Text = "Welcome " .. username
         
+        -- Animate both frames during closeout
+        local InnerFrameOutTween = game:GetService("TweenService"):Create(InnerFrame, TweenInfo.new(0.25, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
+            {Size = UDim2.new(0, 0, 0, 0)})
+            
         local ZoomOutTween = game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
             {Size = UDim2.new(0, 0, 0, 0)})
+        
+        InnerFrameOutTween:Play()
         
         ZoomOutTween.Completed:Connect(function()
             MainFrame.Visible = false
