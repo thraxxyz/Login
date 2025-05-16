@@ -1,4 +1,3 @@
--- MAKE SURE YOU READ THE INSTRUCTIONS OR IT WILL MOST LIKELY NOT WORK
 
 local LoginScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
@@ -11,13 +10,11 @@ local UsernameTextBox = Instance.new("TextBox")
 local PasswordTextBox = Instance.new("TextBox")
 local LoginButton = Instance.new("TextButton")
 
--- Set up the main ScreenGui
 LoginScreenGui.Name = "LoginScreenGui"
 LoginScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 LoginScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 LoginScreenGui.ResetOnSpawn = false
 
--- Main window frame with more rounded corners
 MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = LoginScreenGui
@@ -28,12 +25,10 @@ MainFrame.AnchorPoint = Vector2.new(0.5, 0.5) -- Center anchor point
 MainFrame.Size = UDim2.new(0, 0, 0, 0) -- Start with zero size for animation
 MainFrame.ClipsDescendants = true
 
--- Round the corners of the main frame (more rounded now)
 local MainFrameCorner = Instance.new("UICorner")
 MainFrameCorner.CornerRadius = UDim.new(0, 20) -- Increased from 10 to 20
 MainFrameCorner.Parent = MainFrame
 
--- Title bar (like macOS window header)
 TitleBar = Instance.new("Frame")
 TitleBar.Name = "TitleBar"
 TitleBar.Parent = MainFrame
@@ -41,7 +36,6 @@ TitleBar.BackgroundColor3 = Color3.fromRGB(250, 230, 240) -- Slightly lighter th
 TitleBar.BorderSizePixel = 0
 TitleBar.Size = UDim2.new(1, 0, 0, 30)
 
--- Title label
 TitleLabel = Instance.new("TextLabel")
 TitleLabel.Name = "TitleLabel"
 TitleLabel.Parent = TitleBar
@@ -53,7 +47,6 @@ TitleLabel.Text = "Beeware"
 TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TitleLabel.TextSize = 14
 
--- Version label
 VersionLabel = Instance.new("TextLabel")
 VersionLabel.Name = "VersionLabel"
 VersionLabel.Parent = TitleBar
@@ -65,7 +58,6 @@ VersionLabel.Text = "V1"
 VersionLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
 VersionLabel.TextSize = 12
 
--- Content frame (holds all login elements)
 ContentFrame = Instance.new("Frame")
 ContentFrame.Name = "ContentFrame"
 ContentFrame.Parent = MainFrame
@@ -74,7 +66,6 @@ ContentFrame.BorderSizePixel = 0
 ContentFrame.Position = UDim2.new(0, 0, 0, 30)
 ContentFrame.Size = UDim2.new(1, 0, 1, -30)
 
--- Welcome text
 WelcomeTextLabel = Instance.new("TextLabel")
 WelcomeTextLabel.Name = "WelcomeTextLabel"
 WelcomeTextLabel.Parent = ContentFrame
@@ -87,7 +78,6 @@ WelcomeTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 WelcomeTextLabel.TextSize = 30
 WelcomeTextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 
--- Username input with more rounded corners
 UsernameTextBox = Instance.new("TextBox")
 UsernameTextBox.Name = "UsernameTextBox"
 UsernameTextBox.Parent = ContentFrame
@@ -106,7 +96,6 @@ local UsernameBoxCorner = Instance.new("UICorner")
 UsernameBoxCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
 UsernameBoxCorner.Parent = UsernameTextBox
 
--- Password input with more rounded corners
 PasswordTextBox = Instance.new("TextBox")
 PasswordTextBox.Name = "PasswordTextBox"
 PasswordTextBox.Parent = ContentFrame
@@ -125,7 +114,6 @@ local PasswordBoxCorner = Instance.new("UICorner")
 PasswordBoxCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
 PasswordBoxCorner.Parent = PasswordTextBox
 
--- Login button with more rounded corners
 LoginButton = Instance.new("TextButton")
 LoginButton.Name = "LoginButton"
 LoginButton.Parent = ContentFrame
@@ -167,21 +155,17 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
     end
 end)
 
--- Add animation for opening the window
 local function animateOpen()
     -- Set final dimensions
     local finalWidth = 650
     local finalHeight = 400
     
-    -- Zoom in animation
     game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
         {Size = UDim2.new(0, finalWidth, 0, finalHeight)}):Play()
 end
 
--- Start animation on load
 animateOpen()
 
--- Validation code (unchanged from original)
 local HttpService = game:GetService("HttpService")
 local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
 -- REPLACE GITHUB LINK BELOW WITH THE ONE U MADE FROM INSTRUCTIONS
@@ -221,12 +205,10 @@ LoginButton.MouseButton1Click:Connect(function()
 
     local isValid, message = validateLogin(username, password, clientId)
     if isValid then
-        ---------------------------- PUT YOUR SCRIPT HERE BELOW IT WILL LOAD IF SUCCEEDED
        loadstring(game:HttpGet("https://raw.githubusercontent.com/thraxxyz/Login/refs/heads/main/Beesploit"))() 
         print("Yes")
         WelcomeTextLabel.Text = "Welcome " .. username
         
-        -- Create zoom out animation before hiding
         local ZoomOutTween = game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
             {Size = UDim2.new(0, 0, 0, 0)})
         
@@ -236,11 +218,8 @@ LoginButton.MouseButton1Click:Connect(function()
         
         ZoomOutTween:Play()
     else
-    -----------------------------------NOT WHITELISTED CODE BELOW
-    -- Simple Roblox kick script
         local player = game.Players.LocalPlayer
 
-        -- Function to kick the local player with custom message
         local function kickPlayer()
             player:Kick("Buy Beeware first nga")
         end
