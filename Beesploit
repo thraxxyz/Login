@@ -1,3 +1,4 @@
+-- Made by: Thraxxyz
 
 local Gamesense = Instance.new("ScreenGui")
 local Panel = Instance.new("Frame")
@@ -30,15 +31,6 @@ local AntiAimT = Instance.new("TextLabel")
 local AntiAimSlider = Instance.new("TextLabel")
 local Slider = Instance.new("TextButton")
 local ValueT = Instance.new("TextLabel")
-local VisualsMenu = Instance.new("Frame")
-local VisualsSec = Instance.new("Frame")
-local Title_5 = Instance.new("TextLabel")
-local ESPBtn = Instance.new("TextButton")
-local ESPT = Instance.new("TextLabel")
-local TeamCheckBtn = Instance.new("TextButton")
-local TeamCheckT = Instance.new("TextLabel")
-local TeamColorBtn = Instance.new("TextButton")
-local TeamColorT = Instance.new("TextLabel")
 
 Gamesense.Name = "Gamesense"
 Gamesense.Parent = game.CoreGui
@@ -331,484 +323,228 @@ ValueT.TextColor3 = Color3.fromRGB(255, 255, 255)
 ValueT.TextSize = 16.000
 ValueT.TextStrokeTransparency = 0.000
 
--- Visuals Menu
-VisualsMenu.Name = "VisualsMenu"
-VisualsMenu.Parent = Panel
-VisualsMenu.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-VisualsMenu.BorderColor3 = Color3.fromRGB(50, 50, 50)
-VisualsMenu.BorderSizePixel = 0
-VisualsMenu.Position = UDim2.new(0, 120, 0, 15)
-VisualsMenu.Size = UDim2.new(0, 670, 0, 625)
-VisualsMenu.Visible = false
+local function NHVSVY_fake_script()
+local script = Instance.new('LocalScript', Sections)
 
-VisualsSec.Name = "VisualsSec"
-VisualsSec.Parent = VisualsMenu
-VisualsSec.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-VisualsSec.BorderColor3 = Color3.fromRGB(50, 50, 50)
-VisualsSec.Position = UDim2.new(0, 25, 0, 25)
-VisualsSec.Size = UDim2.new(0, 297, 0, 575)
+local UI = script.Parent.Parent.Parent.Parent.Gamesense
+local Panel = UI.Panel
+local Sections = Panel.Sections
 
-Title_5.Name = "Title"
-Title_5.Parent = VisualsSec
-Title_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Title_5.BackgroundTransparency = 1.000
-Title_5.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Title_5.BorderSizePixel = 0
-Title_5.Position = UDim2.new(0, 10, 0, -15)
-Title_5.Size = UDim2.new(0, 150, 0, 15)
-Title_5.Font = Enum.Font.SourceSans
-Title_5.Text = "Visuals"
-Title_5.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title_5.TextSize = 16.000
-Title_5.TextXAlignment = Enum.TextXAlignment.Left
+local AimMenu = Panel.AimBotMenu
+local AAMenu = Panel.AntiAimMenu
+local LegitMenu
+local VisualsMenu
+local MiscMenu
+local SkinsMenu
+local PlayersMenu
 
-ESPBtn.Name = "ESPBtn"
-ESPBtn.Parent = VisualsSec
-ESPBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-ESPBtn.BorderSizePixel = 0
-ESPBtn.Position = UDim2.new(0, 20, 0, 20)
-ESPBtn.Size = UDim2.new(0, 15, 0, 15)
-ESPBtn.Font = Enum.Font.SourceSans
-ESPBtn.Text = ""
-ESPBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
-ESPBtn.TextSize = 14.000
+local AimTab = Sections.AimbotTab
+local AATab = Sections.AntiAimTab
+local LegitTab = Sections.LegitBotTab
+local VisualsTab = Sections.VisualsTab
+local MiscTab = Sections.MiscTab
+local SkinsTab = Sections.SkinsTab
+local PlayersTab = Sections.PlayersTab
 
-ESPT.Name = "ESPT"
-ESPT.Parent = VisualsSec
-ESPT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESPT.BackgroundTransparency = 1.000
-ESPT.BorderSizePixel = 0
-ESPT.Position = UDim2.new(0, 50, 0, 17)
-ESPT.Size = UDim2.new(0, 200, 0, 20)
-ESPT.Font = Enum.Font.SourceSans
-ESPT.Text = "ESP"
-ESPT.TextColor3 = Color3.fromRGB(255, 255, 255)
-ESPT.TextSize = 18.000
-ESPT.TextXAlignment = Enum.TextXAlignment.Left
-
-TeamCheckBtn.Name = "TeamCheckBtn"
-TeamCheckBtn.Parent = VisualsSec
-TeamCheckBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-TeamCheckBtn.BorderSizePixel = 0
-TeamCheckBtn.Position = UDim2.new(0, 20, 0, 50)
-TeamCheckBtn.Size = UDim2.new(0, 15, 0, 15)
-TeamCheckBtn.Font = Enum.Font.SourceSans
-TeamCheckBtn.Text = ""
-TeamCheckBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
-TeamCheckBtn.TextSize = 14.000
-
-TeamCheckT.Name = "TeamCheckT"
-TeamCheckT.Parent = VisualsSec
-TeamCheckT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TeamCheckT.BackgroundTransparency = 1.000
-TeamCheckT.BorderSizePixel = 0
-TeamCheckT.Position = UDim2.new(0, 50, 0, 47)
-TeamCheckT.Size = UDim2.new(0, 200, 0, 20)
-TeamCheckT.Font = Enum.Font.SourceSans
-TeamCheckT.Text = "Team Check"
-TeamCheckT.TextColor3 = Color3.fromRGB(255, 255, 255)
-TeamCheckT.TextSize = 18.000
-TeamCheckT.TextXAlignment = Enum.TextXAlignment.Left
-
-TeamColorBtn.Name = "TeamColorBtn"
-TeamColorBtn.Parent = VisualsSec
-TeamColorBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-TeamColorBtn.BorderSizePixel = 0
-TeamColorBtn.Position = UDim2.new(0, 20, 0, 80)
-TeamColorBtn.Size = UDim2.new(0, 15, 0, 15)
-TeamColorBtn.Font = Enum.Font.SourceSans
-TeamColorBtn.Text = ""
-TeamColorBtn.TextColor3 = Color3.fromRGB(0, 0, 0)
-TeamColorBtn.TextSize = 14.000
-
-TeamColorT.Name = "TeamColorT"
-TeamColorT.Parent = VisualsSec
-TeamColorT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TeamColorT.BackgroundTransparency = 1.000
-TeamColorT.BorderSizePixel = 0
-TeamColorT.Position = UDim2.new(0, 50, 0, 77)
-TeamColorT.Size = UDim2.new(0, 200, 0, 20)
-TeamColorT.Font = Enum.Font.SourceSans
-TeamColorT.Text = "Team Color"
-TeamColorT.TextColor3 = Color3.fromRGB(255, 255, 255)
-TeamColorT.TextSize = 18.000
-TeamColorT.TextXAlignment = Enum.TextXAlignment.Left
-
--- ESP Settings
-local settings = {
-    defaultcolor = Color3.fromRGB(255,0,0),
-    teamcheck = false,
-    teamcolor = true,
-    espenabled = false
-};
-
--- services
-local runService = game:GetService("RunService");
-local players = game:GetService("Players");
-
--- variables
-local localPlayer = players.LocalPlayer;
-local camera = workspace.CurrentCamera;
-
--- functions
-local newVector2, newColor3, newDrawing = Vector2.new, Color3.new, Drawing.new;
-local tan, rad = math.tan, math.rad;
-local round = function(...) local a = {}; for i,v in next, table.pack(...) do a[i] = math.round(v); end return unpack(a); end;
-local wtvp = function(...) local a, b = camera.WorldToViewportPoint(camera, ...) return newVector2(a.X, a.Y), b, a.Z end;
-
-local espCache = {};
-local function createEsp(player)
-    local drawings = {};
-
-    drawings.box = newDrawing("Square");
-    drawings.box.Thickness = 1;
-    drawings.box.Filled = false;
-    drawings.box.Color = settings.defaultcolor;
-    drawings.box.Visible = false;
-    drawings.box.ZIndex = 2;
-
-    drawings.boxoutline = newDrawing("Square");
-    drawings.boxoutline.Thickness = 3;
-    drawings.boxoutline.Filled = false;
-    drawings.boxoutline.Color = newColor3();
-    drawings.boxoutline.Visible = false;
-    drawings.boxoutline.ZIndex = 1;
-
-    espCache[player] = drawings;
-end
-
-local function removeEsp(player)
-    if rawget(espCache, player) then
-        for _, drawing in next, espCache[player] do
-            drawing:Remove();
-        end
-        espCache[player] = nil;
-    end
-end
-
-local function updateEsp(player, esp)
-    local character = player and player.Character;
-    if character then
-        local cframe = character:GetModelCFrame();
-        local position, visible, depth = wtvp(cframe.Position);
-        esp.box.Visible = visible and settings.espenabled;
-        esp.boxoutline.Visible = visible and settings.espenabled;
-
-        if cframe and visible and settings.espenabled then
-            local scaleFactor = 1 / (depth * tan(rad(camera.FieldOfView / 2)) * 2) * 1000;
-            local width, height = round(4 * scaleFactor, 5 * scaleFactor);
-            local x, y = round(position.X, position.Y);
-
-            esp.box.Size = newVector2(width, height);
-            esp.box.Position = newVector2(round(x - width / 2, y - height / 2));
-            esp.box.Color = settings.teamcolor and player.TeamColor.Color or settings.defaultcolor;
-
-            esp.boxoutline.Size = esp.box.Size;
-            esp.boxoutline.Position = esp.box.Position;
-        end
-    else
-        esp.box.Visible = false;
-        esp.boxoutline.Visible = false;
-    end
-end
-
--- Initialize ESP for existing players
-for _, player in next, players:GetPlayers() do
-    if player ~= localPlayer then
-        createEsp(player);
-    end
-end
-
-players.PlayerAdded:Connect(function(player)
-    createEsp(player);
-end);
-
-players.PlayerRemoving:Connect(function(player)
-    removeEsp(player);
+AimTab.MouseButton1Down:Connect(function()
+AimMenu.Visible = true
+AAMenu.Visible = false
+-- LegitMenu
+-- VisualsMenu
+-- MiscMenu
+-- SkinsMenu
+-- PlayersMenu
 end)
 
--- ESP Render Step
-local espRenderStep
-local function toggleESP()
-    settings.espenabled = not settings.espenabled
-    ESPBtn.BackgroundColor3 = settings.espenabled and Color3.fromRGB(160, 195, 5) or Color3.fromRGB(60, 60, 60)
-    
-    if settings.espenabled then
-        if not espRenderStep then
-            espRenderStep = runService:BindToRenderStep("esp", Enum.RenderPriority.Camera.Value, function()
-                for player, drawings in next, espCache do
-                    if settings.teamcheck and player.Team == localPlayer.Team then
-                        continue;
-                    end
-
-                    if drawings and player ~= localPlayer then
-                        updateEsp(player, drawings);
-                    end
-                end
-            end)
-        end
-    else
-        if espRenderStep then
-            runService:UnbindFromRenderStep("esp")
-            espRenderStep = nil
-            -- Hide all ESP boxes when disabled
-            for _, drawings in next, espCache do
-                drawings.box.Visible = false
-                drawings.boxoutline.Visible = false
-            end
-        end
-    end
-end
-
-local function toggleTeamCheck()
-    settings.teamcheck = not settings.teamcheck
-    TeamCheckBtn.BackgroundColor3 = settings.teamcheck and Color3.fromRGB(160, 195, 5) or Color3.fromRGB(60, 60, 60)
-end
-
-local function toggleTeamColor()
-    settings.teamcolor = not settings.teamcolor
-    TeamColorBtn.BackgroundColor3 = settings.teamcolor and Color3.fromRGB(160, 195, 5) or Color3.fromRGB(60, 60, 60)
-end
-
--- Connect buttons
-ESPBtn.MouseButton1Down:Connect(toggleESP)
-TeamCheckBtn.MouseButton1Down:Connect(toggleTeamCheck)
-TeamColorBtn.MouseButton1Down:Connect(toggleTeamColor)
-
--- Tab switching script
-local function NHVSVY_fake_script()
-    local script = Instance.new('LocalScript', Sections)
-
-    local UI = script.Parent.Parent.Parent.Parent.Gamesense
-    local Panel = UI.Panel
-    local Sections = Panel.Sections
-
-    local AimMenu = Panel.AimBotMenu
-    local AAMenu = Panel.AntiAimMenu
-    local VisualsMenu = Panel.VisualsMenu
-    local LegitMenu
-    local MiscMenu
-    local SkinsMenu
-    local PlayersMenu
-
-    local AimTab = Sections.AimbotTab
-    local AATab = Sections.AntiAimTab
-    local LegitTab = Sections.LegitBotTab
-    local VisualsTab = Sections.VisualsTab
-    local MiscTab = Sections.MiscTab
-    local SkinsTab = Sections.SkinsTab
-    local PlayersTab = Sections.PlayersTab
-
-    AimTab.MouseButton1Down:Connect(function()
-        AimMenu.Visible = true
-        AAMenu.Visible = false
-        VisualsMenu.Visible = false
-        -- LegitMenu
-        -- MiscMenu
-        -- SkinsMenu
-        -- PlayersMenu
-    end)
-
-    AATab.MouseButton1Down:Connect(function()
-        AimMenu.Visible = false
-        AAMenu.Visible = true
-        VisualsMenu.Visible = false
-        -- LegitMenu
-        -- MiscMenu
-        -- SkinsMenu
-        -- PlayersMenu
-    end)
-
-    VisualsTab.MouseButton1Down:Connect(function()
-        AimMenu.Visible = false
-        AAMenu.Visible = false
-        VisualsMenu.Visible = true
-        -- LegitMenu
-        -- MiscMenu
-        -- SkinsMenu
-        -- PlayersMenu
-    end)
+AATab.MouseButton1Down:Connect(function()
+AimMenu.Visible = false
+AAMenu.Visible = true
+-- LegitMenu
+-- VisualsMenu
+-- MiscMenu
+-- SkinsMenu
+-- PlayersMenu
+end)
 end
 
 coroutine.wrap(NHVSVY_fake_script)()
 
--- Other existing scripts
 local function NQBGU_fake_script()
-    local script = Instance.new('LocalScript', AimBotMenu)
+local script = Instance.new('LocalScript', AimBotMenu)
 
-    local UI = script.Parent.Parent.Parent.Parent.Gamesense
-    local Panel = UI.Panel
-    local Sections = Panel.Sections
+local UI = script.Parent.Parent.Parent.Parent.Gamesense
+local Panel = UI.Panel
+local Sections = Panel.Sections
 
-    local AimMenu = Panel.AimBotMenu
-    local AAMenu = Panel.AntiAimMenu
-    local LegitMenu
-    local VisualsMenu = Panel.VisualsMenu
-    local MiscMenu
-    local SkinsMenu
-    local PlayersMenu
+local AimMenu = Panel.AimBotMenu
+local AAMenu = Panel.AntiAimMenu
+local LegitMenu
+local VisualsMenu
+local MiscMenu
+local SkinsMenu
+local PlayersMenu
 
-    local AimTab = Sections.AimbotTab
-    local AATab = Sections.AntiAimTab
-    local LegitTab = Sections.LegitBotTab
-    local VisualsTab = Sections.VisualsTab
-    local MiscTab = Sections.MiscTab
-    local SkinsTab = Sections.SkinsTab
-    local PlayersTab = Sections.PlayersTab
+local AimTab = Sections.AimbotTab
+local AATab = Sections.AntiAimTab
+local LegitTab = Sections.LegitBotTab
+local VisualsTab = Sections.VisualsTab
+local MiscTab = Sections.MiscTab
+local SkinsTab = Sections.SkinsTab
+local PlayersTab = Sections.PlayersTab
 
-    local AimBotBtn = AimMenu.AimbotSec.AimbotBtn
+local AimBotBtn = AimMenu.AimbotSec.AimbotBtn
 
-    local Enabled = true
+local Enabled = true
 
-    function ToggleAimBot()
-        if Enabled == true then
-            AimBotBtn.BackgroundColor3 = Color3.fromRGB(160, 195, 5) -- 160, 195, 5
-            Enabled = false
-        else
-            if Enabled == false then
-                AimBotBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-                Enabled = true
-            end
-        end
-    end
-    AimBotBtn.MouseButton1Down:Connect(ToggleAimBot)
+function ToggleAimBot()
+if Enabled == true then
+AimBotBtn.BackgroundColor3 = Color3.fromRGB(160, 195, 5) -- 160, 195, 5
+Enabled = false
+else
+if Enabled == false then
+AimBotBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+Enabled = true
+end
+end
+end
+AimBotBtn.MouseButton1Down:Connect(ToggleAimBot)
 end
 
 coroutine.wrap(NQBGU_fake_script)()
 
 local function KWVMQ_fake_script()
-    local script = Instance.new('LocalScript', AntiAimMenu)
+local script = Instance.new('LocalScript', AntiAimMenu)
 
-    local minvalue
-    local maxvalue
-    local callback =  function() end
-    local Slider = script.Parent.AntiAimSec.AntiAimSlider.Slider
+local minvalue
+local maxvalue
+local callback =  function() end
+local Slider = script.Parent.AntiAimSec.AntiAimSlider.Slider
 
-    minvalue = minvalue or 10
-    maxvalue = maxvalue or 100
+minvalue = minvalue or 10
+maxvalue = maxvalue or 100
 
-    local mouse = game.Players.LocalPlayer:GetMouse()
-    local uis = game:GetService("UserInputService")
-    local Value
+local mouse = game.Players.LocalPlayer:GetMouse()
+local uis = game:GetService("UserInputService")
+local Value
 
-    Slider.MouseButton1Down:Connect(function()
-        Value = math.floor((tonumber(maxvalue) - Slider.AbsolutePosition.X)) or 10
+Slider.MouseButton1Down:Connect(function()
+Value = math.floor((tonumber(maxvalue) - Slider.AbsolutePosition.X)) or 10
 
-        pcall(function()
-            callback(Value)
-        end)
+pcall(function()
+callback(Value)
+end)
 
-        Slider.Size = UDim2.new(0, math.clamp(mouse.X - Slider.AbsolutePosition.X, 0, 10), 0, 10)
-        moveconnection = mouse.Move:Connect(function()
-            Slider.Text = Value
-            Value = math.floor((tonumber(maxvalue) - Slider.AbsolutePosition.X)) or 100
+Slider.Size = UDim2.new(0, math.clamp(mouse.X - Slider.AbsolutePosition.X, 0, 10), 0, 10)
+moveconnection = mouse.Move:Connect(function()
+Slider.Text = Value
+Value = math.floor((tonumber(maxvalue) - Slider.AbsolutePosition.X)) or 100
 
-            pcall(function()
-                callback(Value)
-            end)
+pcall(function()
+callback(Value)
+end)
 
-            Slider.Size = UDim2.new(0, math.clamp(mouse.X - Slider.AbsolutePosition.X, 0, 200), 0, 10)
-        end)
+Slider.Size = UDim2.new(0, math.clamp(mouse.X - Slider.AbsolutePosition.X, 0, 200), 0, 10)
+end)
 
-        releaseconnection = uis.InputEnded:Connect(function(Mouse)
-            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                Value = math.floor((tonumber(maxvalue) - Slider.AbsolutePosition.X)) or 10
+releaseconnection = uis.InputEnded:Connect(function(Mouse)
+if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+Value = math.floor((tonumber(maxvalue) - Slider.AbsolutePosition.X)) or 10
 
-                pcall(function()
-                    callback(Value)
-                end)
+pcall(function()
+callback(Value)
+end)
 
-                Slider.Size = UDim2.new(0, math.clamp(mouse.X - Slider.AbsolutePosition.X, 0, 200), 0, 10)
-                moveconnection:Disconnect()
-                releaseconnection:Disconnect()
-            end
-        end)
-    end)
+Slider.Size = UDim2.new(0, math.clamp(mouse.X - Slider.AbsolutePosition.X, 0, 200), 0, 10)
+moveconnection:Disconnect()
+releaseconnection:Disconnect()
+end
+end)
+end)
 end
 
 coroutine.wrap(KWVMQ_fake_script)()
 
 local function NWVA_fake_script()
-    local script = Instance.new('LocalScript', AntiAimMenu)
+local script = Instance.new('LocalScript', AntiAimMenu)
 
-    local UI = script.Parent.Parent.Parent.Parent.Gamesense
-    local Panel = UI.Panel
-    local Sections = Panel.Sections
+local UI = script.Parent.Parent.Parent.Parent.Gamesense
+local Panel = UI.Panel
+local Sections = Panel.Sections
 
-    local AimMenu = Panel.AimBotMenu
-    local AAMenu = Panel.AntiAimMenu
-    local LegitMenu
-    local VisualsMenu = Panel.VisualsMenu
-    local MiscMenu
-    local SkinsMenu
-    local PlayersMenu
+local AimMenu = Panel.AimBotMenu
+local AAMenu = Panel.AntiAimMenu
+local LegitMenu
+local VisualsMenu
+local MiscMenu
+local SkinsMenu
+local PlayersMenu
 
-    local AimTab = Sections.AimbotTab
-    local AATab = Sections.AntiAimTab
-    local LegitTab = Sections.LegitBotTab
-    local VisualsTab = Sections.VisualsTab
-    local MiscTab = Sections.MiscTab
-    local SkinsTab = Sections.SkinsTab
-    local PlayersTab = Sections.PlayersTab
+local AimTab = Sections.AimbotTab
+local AATab = Sections.AntiAimTab
+local LegitTab = Sections.LegitBotTab
+local VisualsTab = Sections.VisualsTab
+local MiscTab = Sections.MiscTab
+local SkinsTab = Sections.SkinsTab
+local PlayersTab = Sections.PlayersTab
 
-    local AimBotBtn = AimMenu.AimbotSec.AimbotBtn
-    local AntiAimBtn = AAMenu.AntiAimSec.AntiAimBtn
+local AimBotBtn = AimMenu.AimbotSec.AimbotBtn
+local AntiAimBtn = AAMenu.AntiAimSec.AntiAimBtn
 
-    local Enabled = true
+local Enabled = true
 
-    function ToggleAA()
-        if Enabled == true then
-            AntiAimBtn.BackgroundColor3 = Color3.fromRGB(160, 195, 5) -- 160, 195, 5
-            Enabled = false
-        else
-            if Enabled == false then
-                AntiAimBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-                Enabled = true
-            end
-        end
-    end
-    AntiAimBtn.MouseButton1Down:Connect(ToggleAA)
+function ToggleAA()
+if Enabled == true then
+AntiAimBtn.BackgroundColor3 = Color3.fromRGB(160, 195, 5) -- 160, 195, 5
+Enabled = false
+else
+if Enabled == false then
+AntiAimBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+Enabled = true
+end
+end
+end
+AntiAimBtn.MouseButton1Down:Connect(ToggleAA)
 end
 
 coroutine.wrap(NWVA_fake_script)()
 
 local function JNRSNQB_fake_script()
-    local script = Instance.new('LocalScript', Gamesense)
+local script = Instance.new('LocalScript', Gamesense)
 
-    local UIS = game:GetService("UserInputService")
-    local frame = script.Parent.Panel
-    local dragToggle = nil
-    local dragSpeed = 0.15
-    local dragStart = nil
-    local startPos = nil
+local UIS = game:GetService("UserInputService")
+local frame = script.Parent.Panel
+local dragToggle = nil
+local dragSpeed = 0.15
+local dragStart = nil
+local startPos = nil
 
-    local function updateInput(input)
-        local delta = input.Position - dragStart
-        local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-        startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-    end
+local function updateInput(input)
+local delta = input.Position - dragStart
+local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
 
-    frame.InputBegan:Connect(function(input)
-        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
-            dragToggle = true
-            dragStart = input.Position
-            startPos = frame.Position
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragToggle = false
-                end
-            end)
-        end
-    end)
+frame.InputBegan:Connect(function(input)
+if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then
+dragToggle = true
+dragStart = input.Position
+startPos = frame.Position
+input.Changed:Connect(function()
+if input.UserInputState == Enum.UserInputState.End then
+dragToggle = false
+end
+end)
+end
+end)
 
-    UIS.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            if dragToggle then
-                updateInput(input)
-            end
-        end
-    end)
+UIS.InputChanged:Connect(function(input)
+if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+if dragToggle then
+updateInput(input)
+end
+end
+end)
 end
 
 coroutine.wrap(JNRSNQB_fake_script)()
