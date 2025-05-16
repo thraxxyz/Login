@@ -1,14 +1,22 @@
-
 local LoginScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TitleBar = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local VersionLabel = Instance.new("TextLabel")
 local ContentFrame = Instance.new("Frame")
+local ProfileIcon = Instance.new("ImageLabel")
 local WelcomeTextLabel = Instance.new("TextLabel")
 local UsernameTextBox = Instance.new("TextBox")
 local PasswordTextBox = Instance.new("TextBox")
 local LoginButton = Instance.new("TextButton")
+
+-- Color constants for black and yellow theme
+local BLACK_PRIMARY = Color3.fromRGB(20, 20, 20)
+local BLACK_SECONDARY = Color3.fromRGB(35, 35, 35)
+local BLACK_TERTIARY = Color3.fromRGB(50, 50, 50)
+local YELLOW_PRIMARY = Color3.fromRGB(255, 215, 0) -- Gold
+local YELLOW_ACCENT = Color3.fromRGB(255, 225, 50) -- Lighter yellow
+local TEXT_WHITE = Color3.fromRGB(255, 255, 255)
 
 LoginScreenGui.Name = "LoginScreenGui"
 LoginScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -18,7 +26,7 @@ LoginScreenGui.ResetOnSpawn = false
 MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = LoginScreenGui
-MainFrame.BackgroundColor3 = Color3.fromRGB(255, 240, 245) -- Dark grey (macOS-like)
+MainFrame.BackgroundColor3 = BLACK_PRIMARY -- Black base
 MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0) -- Center position for animation
 MainFrame.AnchorPoint = Vector2.new(0.5, 0.5) -- Center anchor point
@@ -26,26 +34,36 @@ MainFrame.Size = UDim2.new(0, 0, 0, 0) -- Start with zero size for animation
 MainFrame.ClipsDescendants = true
 
 local MainFrameCorner = Instance.new("UICorner")
-MainFrameCorner.CornerRadius = UDim.new(0, 20) -- Increased from 10 to 20
+MainFrameCorner.CornerRadius = UDim.new(0, 16) -- Rounded corners
 MainFrameCorner.Parent = MainFrame
+
+-- Add a yellow border/glow effect
+local MainFrameStroke = Instance.new("UIStroke")
+MainFrameStroke.Color = YELLOW_PRIMARY
+MainFrameStroke.Thickness = 2
+MainFrameStroke.Parent = MainFrame
 
 TitleBar = Instance.new("Frame")
 TitleBar.Name = "TitleBar"
 TitleBar.Parent = MainFrame
-TitleBar.BackgroundColor3 = Color3.fromRGB(250, 230, 240) -- Slightly lighter than main
+TitleBar.BackgroundColor3 = BLACK_SECONDARY -- Slightly lighter black
 TitleBar.BorderSizePixel = 0
 TitleBar.Size = UDim2.new(1, 0, 0, 30)
+
+local TitleBarCorner = Instance.new("UICorner")
+TitleBarCorner.CornerRadius = UDim.new(0, 16)
+TitleBarCorner.Parent = TitleBar
 
 TitleLabel = Instance.new("TextLabel")
 TitleLabel.Name = "TitleLabel"
 TitleLabel.Parent = TitleBar
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Position = UDim2.new(0, 20, 0, 0) -- Moved left since we removed the buttons
+TitleLabel.Position = UDim2.new(0, 20, 0, 0)
 TitleLabel.Size = UDim2.new(0, 78, 1, 0)
-TitleLabel.Font = Enum.Font.SourceSansSemibold
+TitleLabel.Font = Enum.Font.SourceSansBold
 TitleLabel.Text = "Beeware"
-TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TitleLabel.TextSize = 14
+TitleLabel.TextColor3 = YELLOW_PRIMARY -- Yellow text
+TitleLabel.TextSize = 16
 
 VersionLabel = Instance.new("TextLabel")
 VersionLabel.Name = "VersionLabel"
@@ -55,92 +73,152 @@ VersionLabel.Position = UDim2.new(1, -30, 0, 0)
 VersionLabel.Size = UDim2.new(0, 25, 1, 0)
 VersionLabel.Font = Enum.Font.SourceSans
 VersionLabel.Text = "V1"
-VersionLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+VersionLabel.TextColor3 = YELLOW_ACCENT -- Light yellow
 VersionLabel.TextSize = 12
 
 ContentFrame = Instance.new("Frame")
 ContentFrame.Name = "ContentFrame"
 ContentFrame.Parent = MainFrame
-ContentFrame.BackgroundColor3 = Color3.fromRGB(255, 240, 245) -- Match main frame
+ContentFrame.BackgroundColor3 = BLACK_PRIMARY -- Match main frame
 ContentFrame.BorderSizePixel = 0
 ContentFrame.Position = UDim2.new(0, 0, 0, 30)
 ContentFrame.Size = UDim2.new(1, 0, 1, -30)
+
+-- Add bee profile icon
+ProfileIcon = Instance.new("ImageLabel")
+ProfileIcon.Name = "ProfileIcon"
+ProfileIcon.Parent = ContentFrame
+ProfileIcon.BackgroundTransparency = 1
+ProfileIcon.Position = UDim2.new(0.5, 0, 0.15, 0)
+ProfileIcon.Size = UDim2.new(0, 70, 0, 70)
+ProfileIcon.Image = "rbxassetid://6034973115" -- Generic user icon (replace with bee icon ID)
+ProfileIcon.ImageColor3 = YELLOW_PRIMARY -- Tint it yellow
+ProfileIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+
+-- Create a circular mask for the profile icon
+local ProfileIconCorner = Instance.new("UICorner")
+ProfileIconCorner.CornerRadius = UDim.new(1, 0) -- Makes it perfectly circular
+ProfileIconCorner.Parent = ProfileIcon
 
 WelcomeTextLabel = Instance.new("TextLabel")
 WelcomeTextLabel.Name = "WelcomeTextLabel"
 WelcomeTextLabel.Parent = ContentFrame
 WelcomeTextLabel.BackgroundTransparency = 1
-WelcomeTextLabel.Position = UDim2.new(0.5, 0, 0.15, 0)
-WelcomeTextLabel.Size = UDim2.new(0, 300, 0, 40)
+WelcomeTextLabel.Position = UDim2.new(0.5, 0, 0.3, 0)
+WelcomeTextLabel.Size = UDim2.new(0, 240, 0, 30)
 WelcomeTextLabel.Font = Enum.Font.SourceSansBold
 WelcomeTextLabel.Text = "Welcome"
-WelcomeTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-WelcomeTextLabel.TextSize = 30
+WelcomeTextLabel.TextColor3 = YELLOW_PRIMARY -- Yellow text
+WelcomeTextLabel.TextSize = 22
 WelcomeTextLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 
 UsernameTextBox = Instance.new("TextBox")
 UsernameTextBox.Name = "UsernameTextBox"
 UsernameTextBox.Parent = ContentFrame
-UsernameTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-UsernameTextBox.Position = UDim2.new(0.5, 0, 0.35, 0)
-UsernameTextBox.Size = UDim2.new(0, 340, 0, 45)
+UsernameTextBox.BackgroundColor3 = BLACK_TERTIARY
+UsernameTextBox.Position = UDim2.new(0.5, 0, 0.45, 0)
+UsernameTextBox.Size = UDim2.new(0, 250, 0, 40)
 UsernameTextBox.Font = Enum.Font.SourceSans
 UsernameTextBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
 UsernameTextBox.PlaceholderText = "Username.."
 UsernameTextBox.Text = ""
-UsernameTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+UsernameTextBox.TextColor3 = TEXT_WHITE
 UsernameTextBox.TextSize = 16
 UsernameTextBox.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local UsernameBoxCorner = Instance.new("UICorner")
-UsernameBoxCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
+UsernameBoxCorner.CornerRadius = UDim.new(0, 12)
 UsernameBoxCorner.Parent = UsernameTextBox
+
+-- Add a yellow glow when focused
+local UsernameBoxStroke = Instance.new("UIStroke")
+UsernameBoxStroke.Color = BLACK_TERTIARY
+UsernameBoxStroke.Thickness = 1
+UsernameBoxStroke.Parent = UsernameTextBox
 
 PasswordTextBox = Instance.new("TextBox")
 PasswordTextBox.Name = "PasswordTextBox"
 PasswordTextBox.Parent = ContentFrame
-PasswordTextBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-PasswordTextBox.Position = UDim2.new(0.5, 0, 0.5, 0)
-PasswordTextBox.Size = UDim2.new(0, 300, 0, 45)
+PasswordTextBox.BackgroundColor3 = BLACK_TERTIARY
+PasswordTextBox.Position = UDim2.new(0.5, 0, 0.6, 0)
+PasswordTextBox.Size = UDim2.new(0, 250, 0, 40)
 PasswordTextBox.Font = Enum.Font.SourceSans
 PasswordTextBox.PlaceholderColor3 = Color3.fromRGB(150, 150, 150)
 PasswordTextBox.PlaceholderText = "Password.."
 PasswordTextBox.Text = ""
-PasswordTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+PasswordTextBox.TextColor3 = TEXT_WHITE
 PasswordTextBox.TextSize = 16
 PasswordTextBox.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local PasswordBoxCorner = Instance.new("UICorner")
-PasswordBoxCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
+PasswordBoxCorner.CornerRadius = UDim.new(0, 12)
 PasswordBoxCorner.Parent = PasswordTextBox
+
+-- Add a yellow glow when focused
+local PasswordBoxStroke = Instance.new("UIStroke")
+PasswordBoxStroke.Color = BLACK_TERTIARY
+PasswordBoxStroke.Thickness = 1
+PasswordBoxStroke.Parent = PasswordTextBox
 
 LoginButton = Instance.new("TextButton")
 LoginButton.Name = "LoginButton"
 LoginButton.Parent = ContentFrame
-LoginButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
-LoginButton.Position = UDim2.new(0.5, 0, 0.7, 0)
-LoginButton.Size = UDim2.new(0, 200, 0, 50)
-LoginButton.Font = Enum.Font.SourceSansSemibold
+LoginButton.BackgroundColor3 = YELLOW_PRIMARY
+LoginButton.Position = UDim2.new(0.5, 0, 0.78, 0)
+LoginButton.Size = UDim2.new(0, 180, 0, 45)
+LoginButton.Font = Enum.Font.SourceSansBold
 LoginButton.Text = "Login"
-LoginButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-LoginButton.TextSize = 20
+LoginButton.TextColor3 = BLACK_PRIMARY -- Black text on yellow button
+LoginButton.TextSize = 18
 LoginButton.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local LoginButtonCorner = Instance.new("UICorner")
-LoginButtonCorner.CornerRadius = UDim.new(0, 16) -- Increased from 8 to 16
+LoginButtonCorner.CornerRadius = UDim.new(0, 12)
 LoginButtonCorner.Parent = LoginButton
 
--- Create button hover effect
+-- Enhanced text box focus effects
+UsernameTextBox.Focused:Connect(function()
+    game:GetService("TweenService"):Create(UsernameBoxStroke, TweenInfo.new(0.2), 
+        {Color = YELLOW_PRIMARY, Thickness = 2}):Play()
+end)
+
+UsernameTextBox.FocusLost:Connect(function()
+    game:GetService("TweenService"):Create(UsernameBoxStroke, TweenInfo.new(0.2), 
+        {Color = BLACK_TERTIARY, Thickness = 1}):Play()
+end)
+
+PasswordTextBox.Focused:Connect(function()
+    game:GetService("TweenService"):Create(PasswordBoxStroke, TweenInfo.new(0.2), 
+        {Color = YELLOW_PRIMARY, Thickness = 2}):Play()
+end)
+
+PasswordTextBox.FocusLost:Connect(function()
+    game:GetService("TweenService"):Create(PasswordBoxStroke, TweenInfo.new(0.2), 
+        {Color = BLACK_TERTIARY, Thickness = 1}):Play()
+end)
+
+-- Create button hover/click effects
 LoginButton.MouseEnter:Connect(function()
-    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(80, 80, 80)}):Play()
+    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.2), 
+        {BackgroundColor3 = YELLOW_ACCENT}):Play()
 end)
 
 LoginButton.MouseLeave:Connect(function()
-    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(60, 60, 60)}):Play()
+    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.2), 
+        {BackgroundColor3 = YELLOW_PRIMARY}):Play()
 end)
 
--- Add close functionality (since we removed the close button)
--- We'll use a key press instead (Escape key)
+LoginButton.MouseButton1Down:Connect(function()
+    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.1), 
+        {Size = UDim2.new(0, 175, 0, 42)}):Play()
+end)
+
+LoginButton.MouseButton1Up:Connect(function()
+    game:GetService("TweenService"):Create(LoginButton, TweenInfo.new(0.1), 
+        {Size = UDim2.new(0, 180, 0, 45)}):Play()
+end)
+
+-- Add close functionality (Escape key)
 game:GetService("UserInputService").InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.Escape then
         -- Zoom out animation
@@ -156,15 +234,29 @@ game:GetService("UserInputService").InputBegan:Connect(function(input)
 end)
 
 local function animateOpen()
-    -- Set final dimensions
-    local finalWidth = 650
-    local finalHeight = 400
+    -- Set smaller dimensions
+    local finalWidth = 400  -- Reduced from 650
+    local finalHeight = 320 -- Reduced from 400
     
     game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
         {Size = UDim2.new(0, finalWidth, 0, finalHeight)}):Play()
 end
 
 animateOpen()
+
+-- Add subtle pulse animation to the profile icon
+local function pulseProfileIcon()
+    while true do
+        game:GetService("TweenService"):Create(ProfileIcon, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 
+            {ImageTransparency = 0.1}):Play()
+        wait(1.5)
+        game:GetService("TweenService"):Create(ProfileIcon, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), 
+            {ImageTransparency = 0}):Play()
+        wait(1.5)
+    end
+end
+
+spawn(pulseProfileIcon)
 
 local HttpService = game:GetService("HttpService")
 local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
