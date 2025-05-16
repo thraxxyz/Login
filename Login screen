@@ -63,7 +63,7 @@ MainFrameStroke.Parent = MainFrame
 TitleBar = Instance.new("Frame")
 TitleBar.Name = "TitleBar"
 TitleBar.Parent = InnerFrame -- Parent to inner frame
-TitleBar.BackgroundColor3 = BLACK_SECONDARY -- Slightly lighter black
+TitleBar.BackgroundColor3 = BLACK_PRIMARY -- Slightly lighter black
 TitleBar.BorderSizePixel = 0
 TitleBar.Size = UDim2.new(1, 0, 0, 30)
 TitleBar.Position = UDim2.new(0, 0, 0, 0)
@@ -73,20 +73,11 @@ local TitleBarCorner = Instance.new("UICorner")
 TitleBarCorner.CornerRadius = UDim.new(0, 20) -- Match inner frame corner radius
 TitleBarCorner.Parent = TitleBar
 
--- Create a separator line instead of relying on the frame overlap
-local Separator = Instance.new("Frame")
-Separator.Name = "Separator"
-Separator.Parent = InnerFrame
-Separator.BackgroundColor3 = BLACK_SECONDARY
-Separator.BorderSizePixel = 0
-Separator.Position = UDim2.new(0, 0, 0, 30)
-Separator.Size = UDim2.new(1, 0, 0, 1)
-
 TitleLabel = Instance.new("TextLabel")
 TitleLabel.Name = "TitleLabel"
 TitleLabel.Parent = TitleBar
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Position = UDim2.new(0, 20, 0, 0)
+TitleLabel.Position = UDim2.new(0, 8, 0, 0)
 TitleLabel.Size = UDim2.new(0, 78, 1, 0)
 TitleLabel.Font = Enum.Font.SourceSansBold
 TitleLabel.Text = "Beeware"
