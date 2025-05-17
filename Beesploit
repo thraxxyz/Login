@@ -1,4 +1,4 @@
--- Made by: Cynt X#1069
+-- Made by: Cynt thraxxyz
 
 local Gamesense = Instance.new("ScreenGui")
 local Panel = Instance.new("Frame")
